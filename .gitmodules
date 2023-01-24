@@ -1,0 +1,3 @@
+[submodule "libs/idkformat"]
+	path = libs/idkformat
+	url = https://github.com/ferhatgec/idkformat.git

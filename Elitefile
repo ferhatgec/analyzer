@@ -1,0 +1,42 @@
+# how to build?
+# 
+# * elite Elitefile update
+# * elite Elitefile install
+#
+#
+required_version is 0.1
+
+set bin_path as      "/usr/bin/"
+set output   as      "{bin_path}enigne_analyzer"
+
+set sudo     as      "sudo"
+set compiler as      "c++"
+set standard as std  "c++20"
+set flag/s   as link "stdc++fs enigne"
+
+
+for signal "start" [
+    set files as "src/enigne_analyzer_main.cpp
+                  src/enigne_analyzer.cpp"
+
+    for argument "update" [
+        use exec "git submodule init"
+        use exec "git submodule update"
+    ]
+
+    for argument "install" [
+        use exec "{sudo} 
+                    {compiler} 
+                    {standard} 
+                    {files} 
+                    {main_file} 
+                    -o {output} 
+                    {flag/s} -L/usr/local/lib -Wl,-R/usr/local/lib"
+
+        for exists "{output}" [
+            println "Installed to {output}"
+        ]
+    ]
+
+    use signal "exit"
+]
